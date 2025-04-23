@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Pulling latest code from Git..."
-                git 'https://github.com/your-user/your-repo.git'
+                git 'https://github.com/12205120/nginx-docker-pipeline.git'
             }
         }
 
