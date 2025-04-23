@@ -31,15 +31,15 @@ pipeline {
         stage('Rebuild and Restart Docker') {
             steps {
                 echo "Rebuilding and restarting Docker container..."
-                sh 'docker-compose down'
-                sh 'docker-compose up --build -d'
+                bat 'docker-compose down'
+                bat 'docker-compose up --build -d'
             }
         }
 
         stage('Verify Deployment') {
             steps {
                 echo "Listing running containers..."
-                sh 'docker ps'
+                bat 'docker ps'
             }
         }
     }
