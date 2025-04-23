@@ -6,13 +6,13 @@ pipeline {
         PROJECT_DIR = "${WORKSPACE}"
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo "Pulling latest code from Git..."
-                git 'https://github.com/12205120/nginx-docker-pipeline.git'
-            }
-        }
+   stage('Checkout') {
+    steps {
+        echo 'Pulling latest code from Git...'
+        git url: 'https://github.com/12205120/nginx-docker-pipeline.git', branch: 'main'
+    }
+}
+
 
         stage('Update Content') {
             steps {
