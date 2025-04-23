@@ -14,6 +14,30 @@ pipeline {
             }
         }
 
+        stage('Ensure HTML Exists') {
+            steps {
+                echo 'Creating html/index.html if it does not exist...'
+                powershell '''
+                    if (-Not (Test-Path "html")) {
+                        New-Item -ItemType Directory -Path "html" | Out-Null
+                    }
+                    if (-Not (Test-Path "html/index.html")) {
+                        @"
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Initial Page</title>
+</head>
+<body>
+  <h1>Hello from Jenkins!</h1>
+</body>
+</html>
+"@ | Set-Content "html/index.html" -Encoding UTF8
+                    }
+                '''
+            }
+        }
+
         stage('Update Content') {
             steps {
                 echo "Running update-content.ps1..."
@@ -53,4 +77,3 @@ pipeline {
         }
     }
 }
-
