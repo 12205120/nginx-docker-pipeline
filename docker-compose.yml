@@ -1,0 +1,8 @@
+services:
+  webserver:
+    build: .
+    container_name: dynamic-nginx
+    ports:
+      - "8081:80"  # Avoid conflict with Jenkins
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
